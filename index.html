@@ -1,15 +1,33 @@
+<!DOCTYPE html>
 <html>
     <head>
-        <title>nazmulshuvo03.github.io</title>
+        <meta charset="utf-8">
+        <title></title>
     </head>
-    <body style="text-align: center">
-        <script>
-            if(navigator.userAgent.includes("Instagram")){
-                window.location.href = "https://nazmulshuvo03.github.io/RedirectTest/dummy.php";
-                // <a href="https://nazmulshuvo03.github.io/RedirectTest/dummy.php" download></a>        
-            }
-            </script>  
-        <h1>mywebsite.com</h1>
-        <h2>This web site, is opened in external browser automatically, instead of Instagram’s in-app browser.</h2>
+    <body>
+        <script type="text/javascript">
+            window.onload = function() {
+
+                var desktopFallback = "https://youtube.com/watch?v=4KnNVK-udTU",
+                mobileFallback = "https://youtube.com/watch?v=4KnNVK-udTU",
+                app = "vnd.youtube://4KnNVK-udTU";
+
+                if( /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
+                    window.location = app;
+                    window.setTimeout(function() {
+                        window.location = mobileFallback;
+                    }, 25);
+                } else {
+                    window.location = desktopFallback;
+                }
+
+                function killPopup() {
+                    window.removeEventListener('pagehide', killPopup);
+                }
+
+                window.addEventListener('pagehide', killPopup);
+
+            };
+        </script>
     </body>
 </html>
